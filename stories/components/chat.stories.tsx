@@ -8,7 +8,10 @@ import '../../src/scss/_flex_helpers.scss';
 
 import 'bootstrap/dist/css/bootstrap-reboot.min.css';
 
-import ChatCollapsed from '../../src/SvgIcons/ChatCollapsed';
+// import ChatCollapsed from '../../src/SvgIcons/ChatCollapsed';
+// import ChatGroup from '../Chat/ChatGroup';
+
+import CollapsedChatBox from '../../src/Chat/CollapsedChatBox';
 
 
 function ChatController() {
@@ -23,7 +26,10 @@ function ChatController() {
     { id: '124338432961296_2', content: 'Lorem Ipsum is simply dummy', timestamp: 124338432961296, userID: 2, username: 'Ratan' },
     { id: '124338432961296_3', content: 'Lorem Ipsum is simply dummy text of the printing Ipsum is simply dummy text of the printing.', timestamp: 124338432961297, userID: 3, username: 'John' },
     { id: '124338432961296_4', content: 'Hey there!', timestamp: 124338432961298, userID: 4, username: 'Elton' },
-    { id: '124338432961296_5', content: 'Testing GMetri Chat.', timestamp: 124338432961299, userID: 5, username: 'Arjun' }
+    { id: '124338432961296_5', content: 'Testing GMetri Chat.', timestamp: 124338432961299, userID: 5, username: 'Arjun' },
+    { id: '124338432961296_6', content: 'Lorem Ipsum is simply dummy text of the printing Ipsum is simply dummy text of the printing.', timestamp: 124338432961297, userID: 6, username: 'John' },
+    { id: '124338432961296_7', content: 'Hey there!', timestamp: 124338432961298, userID: 7, username: 'Elton' },
+    { id: '124338432961296_8', content: 'Testing GMetri Chat.', timestamp: 124338432961299, userID: 8, username: 'Arjun' }
   ]);
 
   const currentUser: {userID: number, username: string} = {userID: 2, username: 'Ratan'};
@@ -34,31 +40,14 @@ function ChatController() {
     setChatMessages([...chatMessages]);
   }
 
-  function addNewChat() {
-    let newChatMessages = [...chatMessages];
-    const dateNow = Date.now();
-    newChatMessages.push({ id: `${dateNow}_2'`, content: 'Lorem Ipsum is simply dummy', timestamp: dateNow, userID: 2, username: 'Ratan' });
-    setChatMessages(newChatMessages);
-  }
-
   return (
-    <div style={{backgroundImage: 'url("https://cdn-minio.vrgmetri.com/cdn-web.vrgmetri.com/board-ui/ChatBackground.svg")', height: '100vh'}}>
-
+    <div>
       {
         showChat ?
         <div className="chat_wrapper">
-          <button onClick={addNewChat}>Add Chat</button>
           <ChatBox chatMessages={chatMessages} currentUser={currentUser} saveChatMessage={saveChatMessage} collapseChat={() => setShowChat(false)} />
         </div> :
-        <div onClick={() => setShowChat(true)}>
-          <div className="chat_collapsed__outer_wrapper flex">
-            <div className="chat_collapsed__inner_wrapper flex">
-              <div className="chat_collapsed">
-                <ChatCollapsed />
-              </div>
-            </div>
-          </div>
-        </div>
+        <CollapsedChatBox onClick={() => setShowChat(true)} />
       }
     </div>
   )

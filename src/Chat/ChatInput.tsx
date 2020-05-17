@@ -6,8 +6,6 @@ interface Props {
   currentUser: CurrentUser
 }
 
-console.log(Date.now());
-
 function ChatInput({saveChatMessage, currentUser}: Props) {
   const refContainer = useRef<HTMLInputElement>(null);
 
@@ -23,8 +21,9 @@ function ChatInput({saveChatMessage, currentUser}: Props) {
         timestamp: dateNow,
         userID: currentUser.userID,
         username: currentUser.username
-      };      
-      saveChatMessage(msg);      
+      };
+
+      saveChatMessage(msg);
     }
   }
 
@@ -32,7 +31,7 @@ function ChatInput({saveChatMessage, currentUser}: Props) {
     <div className="chat_input flex">
       <form>
         <div className="input_wrapper flex">
-          <input type="text" name="chat_message" placeholder="Write a message" ref={refContainer}></input>
+          <input type="text" name="chat_message" placeholder="Write a message" ref={refContainer} autoComplete="off"></input>
           <button className="chat_input__submit" onClick={handleSubmit}> > </button>
         </div>
       </form>
