@@ -15,7 +15,7 @@ interface Props {
 function ChatBox({chatMessages, currentUser, saveChatMessage, collapseChat}: Props) {
   return (
     <div className="chat_box">
-      <div className="down_arrow_wrapper" onClick={collapseChat}>
+      <div className="down_arrow_wrapper flex" onClick={collapseChat}>
         <DownArrow />
       </div>
 

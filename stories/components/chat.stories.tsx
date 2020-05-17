@@ -51,8 +51,8 @@ function ChatController() {
           <ChatBox chatMessages={chatMessages} currentUser={currentUser} saveChatMessage={saveChatMessage} collapseChat={() => setShowChat(false)} />
         </div> :
         <div onClick={() => setShowChat(true)}>
-          <div className="chat_collapsed__outer_wrapper">
-            <div className="chat_collapsed__inner_wrapper">
+          <div className="chat_collapsed__outer_wrapper flex">
+            <div className="chat_collapsed__inner_wrapper flex">
               <div className="chat_collapsed">
                 <ChatCollapsed />
               </div>

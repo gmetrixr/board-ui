@@ -11,7 +11,7 @@ function ChatLine({ message, currentUser}: Props) {
   const {username, content, timestamp} = message;
   
   return (
-    <div className={"chatline_wrapper " + (username === currentUser.username ? 'right' : '')}>
+    <div className={"chatline_wrapper flex " + (username === currentUser.username ? 'flex-row-reverse' : '')}>
       <div className="chatline">
         <div className={"username"}>
           {username}

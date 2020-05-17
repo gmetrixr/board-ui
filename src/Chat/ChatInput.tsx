@@ -29,9 +29,9 @@ function ChatInput({saveChatMessage, currentUser}: Props) {
   }
 
   return (
-    <div className="chat_input">
+    <div className="chat_input flex">
       <form>
-        <div className="input_wrapper">
+        <div className="input_wrapper flex">
           <input type="text" name="chat_message" placeholder="Write a message" ref={refContainer}></input>
           <button className="chat_input__submit" onClick={handleSubmit}> > </button>
         </div>
