@@ -11,9 +11,17 @@ function ChatLine({ message, currentUser}: Props) {
   const {username, content, timestamp} = message;
 
   const messageDate = new Date(timestamp);
-  const ts_hours = messageDate.getHours() < 10 ? '0' + messageDate.getHours() : messageDate.getHours();
-  const ts_minutes = messageDate.getMinutes() < 10 ? '0' + messageDate.getMinutes() : messageDate.getMinutes();
-  
+  let tsHours: string | number = messageDate.getHours();
+  let tsMinutes: string | number = messageDate.getMinutes();
+
+  if(tsHours < 10) {
+    tsHours = '0' + tsHours;
+  }
+
+  if(tsMinutes < 10) {
+    tsMinutes = '0' + tsMinutes;
+  }
+
   return (
     <div className={"chatline_wrapper flex " + (username === currentUser.username ? 'flex-row-reverse' : '')}>
       <div className="chatline">
@@ -25,7 +33,7 @@ function ChatLine({ message, currentUser}: Props) {
           <p>{content}</p>
         </div>
 
-        <span className="time">{ts_hours + ':' + ts_minutes}</span>
+        <span className="time">{tsHours + ':' + tsMinutes}</span>
       </div>
     </div>
   )
