@@ -14,16 +14,21 @@ function ChatInput({saveChatMessage, currentUser}: Props) {
     
     if(refContainer.current){
       const text = refContainer.current.value;
-      const dateNow = Date.now();
+      const dateNowInMilliSec = Date.now();
+
       const msg = {
-        id: `${currentUser.userID}_${dateNow}`,
+        id: `${currentUser.userID}_${dateNowInMilliSec}`,
         content: text,
-        timestamp: dateNow,
+        timestamp: dateNowInMilliSec,
         userID: currentUser.userID,
         username: currentUser.username
       };
 
-      saveChatMessage(msg);
+      refContainer.current.value = '';
+
+      if(text.length) {
+        saveChatMessage(msg);
+      }
     }
   }
 

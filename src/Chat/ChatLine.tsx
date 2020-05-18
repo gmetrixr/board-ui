@@ -9,7 +9,19 @@ interface Props {
 function ChatLine({ message, currentUser}: Props) {
 
   const {username, content, timestamp} = message;
-  
+
+  const messageDate = new Date(timestamp);
+  let tsHours: string | number = messageDate.getHours();
+  let tsMinutes: string | number = messageDate.getMinutes();
+
+  if(tsHours < 10) {
+    tsHours = '0' + tsHours;
+  }
+
+  if(tsMinutes < 10) {
+    tsMinutes = '0' + tsMinutes;
+  }
+
   return (
     <div className={"chatline_wrapper flex " + (username === currentUser.username ? 'flex-row-reverse' : '')}>
       <div className="chatline">
@@ -21,7 +33,7 @@ function ChatLine({ message, currentUser}: Props) {
           <p>{content}</p>
         </div>
 
-        <span className="time">{timestamp}</span>
+        <span className="time">{tsHours + ':' + tsMinutes}</span>
       </div>
     </div>
   )
