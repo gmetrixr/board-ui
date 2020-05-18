@@ -9,10 +9,19 @@
 
 All together - Board UI
 
-## To Run this project execute the following in a terminal of your choice:
-1. `./sd`
-2. `yarn` [To install all dependencies]
-3. `yarn watch` [Start watch mode on the project]
+## Run
+
+Install `docker` and `docker-compose`. Follow instructionsn [here](https://docs.docker.com/get-docker/).
+Then run the following inside terminal. 
+
+```bash
+./sd # Runs a shell script.
+
+# Now, in docker terminal: 
+
+yarn # To install all dependencies.
+yarn watch # start watch mode on the project.
+```
 
 Then goto http://localhost:3810 to view the project. 
 
