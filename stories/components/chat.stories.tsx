@@ -40,14 +40,23 @@ function ChatController() {
     setChatMessages([...chatMessages]);
   }
 
+  function requestHistory() {
+    console.log('request for history here');
+    
+  }
+
   return (
     <div>
       {
         showChat ?
         <div className="chat_wrapper">
-          <ChatBox chatMessages={chatMessages} currentUser={currentUser} saveChatMessage={saveChatMessage} collapseChat={() => setShowChat(false)} />
+          <ChatBox chatMessages={chatMessages} currentUser={currentUser} saveChatMessage={saveChatMessage} requestHistory={requestHistory} collapseChat={() => setShowChat(false)} />
         </div> :
-        <CollapsedChatBox onClick={() => setShowChat(true)} />
+        <div style={{position: 'absolute',
+        bottom: '15px',
+        right: '15px'}}>
+          <CollapsedChatBox onClick={() => setShowChat(true)} />
+        </div>
       }
     </div>
   )

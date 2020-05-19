@@ -9,10 +9,11 @@ interface Props {
   chatMessages: ChatMessage[],
   currentUser: CurrentUser
   saveChatMessage: (message: ChatMessage) => void,
-  collapseChat: () => void
+  collapseChat: () => void,
+  requestHistory: () => void
 }
 
-function ChatBox({chatMessages, currentUser, saveChatMessage, collapseChat}: Props) {
+function ChatBox({chatMessages, currentUser, saveChatMessage, collapseChat, requestHistory}: Props) {
 
   return (
     <div className="chat_box">
@@ -20,7 +21,7 @@ function ChatBox({chatMessages, currentUser, saveChatMessage, collapseChat}: Pro
         <DownArrow />
       </div>
 
-      <ChatGroup chatMessages={chatMessages} currentUser={currentUser} />
+      <ChatGroup chatMessages={chatMessages} requestHistory={requestHistory} currentUser={currentUser} />
       <ChatInput saveChatMessage={saveChatMessage} currentUser={currentUser} />
     </div>
   )
