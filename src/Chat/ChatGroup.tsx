@@ -9,7 +9,7 @@ interface Props {
 }
 
 function ChatGroup({chatMessages, currentUser, requestHistory}: Props) {
-
+  let lastScrollTop = useRef<number>(0);
   const requestedForHistory = useRef<boolean>(false);
 
   useEffect(() => {
@@ -17,14 +17,16 @@ function ChatGroup({chatMessages, currentUser, requestHistory}: Props) {
     
     if(chatGroup) {
       chatGroup.addEventListener('scroll', () => {
-        if(chatGroup.scrollTop < 50 && !requestedForHistory.current) {
-          // request for history
+        let scrollTop = chatGroup.scrollTop;
+
+        if(chatGroup.scrollTop < 10 && !requestedForHistory.current && lastScrollTop.current > scrollTop) {
           requestHistory();
-          setTimeout(() => {
-            requestedForHistory.current = false;
-          }, 100);
+          // setTimeout(() => {       keeping this code here for
+          //   requestedForHistory.current = false;
+          // }, 100);
           requestedForHistory.current = true;
         }
+        lastScrollTop.current = scrollTop;
       });
     }
   }, []);
@@ -35,7 +37,7 @@ function ChatGroup({chatMessages, currentUser, requestHistory}: Props) {
       requestedForHistory.current = false;
     } else {
       // scroll to bottom of ChatGroup
-      var chatGroup = document.getElementById('chat_group') as HTMLDivElement;
+      let chatGroup = document.getElementById('chat_group') as HTMLDivElement;
       if(chatGroup && !requestedForHistory.current) {
         chatGroup.scrollBy(0, (chatGroup?.scrollHeight - chatGroup?.clientHeight));
       } 
