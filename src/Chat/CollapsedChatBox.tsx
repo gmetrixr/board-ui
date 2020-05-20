@@ -8,9 +8,7 @@ interface Props {
 function CollapsedChatBox({onClick}: Props) {
 
   return (
-    <div style={{position: 'absolute',
-      bottom: '15px',
-      right: '15px'}} onClick={onClick}>
+    <div onClick={onClick}>
       <div className="chat_collapsed__outer_wrapper">
         <div className="chat_collapsed__inner_wrapper">
           <div className="chat_collapsed">
